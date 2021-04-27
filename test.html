@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Decentralized World</title>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet' type='text/css'>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+        integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <style>
+        .margin-top-1 {
+            margin-top: 1em;
+        }
+    </style>
+</head>
+
+<body class="container">
+<h2 style="text-align:center">去中心化世界</h2>
+<h5 style="text-align:right"><button id="mainWorldManagerBtn"><i class="fa fa-university"></i> 管理员登录</button></h5>
+<ul class="nav nav-tabs">
+    <li class="active"><a data-toggle="tab" href="#sectionA" id="MainWorld"><i class="fa fa-user"></i> 主世界</a>
+    </li>
+    <li><a data-toggle="tab" href="#sectionB" id="AssetManage"><i class="fa fa-bomb"></i> 世界资产管理</a></li>
+    <li><a data-toggle="tab" href="#sectionC" id="MyWorld"><i class="fa fa-university"></i> 我的世界</a></li>
+    <a data-toggle="tab" href="#sectionViceWorld" id="openViceWorldLink"></a>
+    <a data-toggle="tab" href="#sectionD" id="mainWorldManagerLink"></a>
+    <a data-toggle="tab" href="#sectionMyWorld" id="articleContentLink"></a>
+    <a data-toggle="tab" href="#sectionViceWorldArticle" id="viceWorldArticleContentLink"></a>
+</ul>
+
+<div class="tab-content">
+
+    <div id="sectionA" class="tab-pane fade in active">
+        <div class="panel panel-primary margin-top-1 text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">主世界信息</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>主世界地址</td>
+                            <td id="mainWorldAddress"></td>
+                        </tr>
+                        <tr>
+                            <td>已创建副世界总数量</td>
+                            <td id="totalViceWorldCount"></td>
+                        </tr>
+                        <tr>
+                            <td>已生成房子总数量</td>
+                            <td id="totalHouseCount"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">已创建的世界</h3>
+            </div>
+            <div class="panel-body">
+                <div style="height: 250px; overflow:scroll;">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>用户地址</td>
+                            <td>世界地址</td>
+                            <td>世界名字</td>
+                            <td>世界中房子数量</td>
+                        </tr>
+                        <tbody id="viceWorldInformation">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading" style="background-color: rgba(53, 113, 141, 0.514)">
+                <h3 class="panel-title">生成新的世界</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">世界名字</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputViceWorldName"
+                                    placeholder="name of your world">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子名字</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputFirstHouseName"
+                                    placeholder="name of your house">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                <button id="createViceWorldBtn" class="btn btn-primary">一键生成</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table table-striped">
+                        <tbody>
+                                <tr>
+                                    <td>用户地址</td>
+                                    <td>世界名字</td>
+                                    <td>世界地址</td>
+                                </tr>
+
+                                <tr>
+                                    <td id="userAddress"></td>
+                                    <td id="worldName"></td>
+                                    <td id="worldAddress"></td>
+                                </tr>
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="sectionB" class="tab-pane fade">
+        <div class="panel panel-primary text-center margin-top-1">
+            <div class="panel-heading">
+                <h3 class="panel-title">购买新的房子</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">房子名字</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputNewHouseName"
+                                    placeholder="name of your new house">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子价格</td>
+                            <td style="text-align:left">0.1ETH</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <button id="purchaseHouseBtn" class="btn btn-primary">确认购买</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">升级房子</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">选择房子ID</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputHouseId_levelUp"
+                                    placeholder="ID of your house">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子价格</td>
+                            <td style="text-align:left">升级n级的房子需支付 （0.1 * n）ETH</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <button id="levelUpBtn" class="btn btn-primary">开始升级</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">转让房子</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">选择房子ID</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputHouseId_transferHouse"
+                                    placeholder="ID of your house">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">转让对象的地址</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputToHouseAddress"
+                                    placeholder="address of the receiver">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <button id="transferHouseBtn" class="btn btn-primary">确认转让</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">查看房子的信息</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">输入房子ID</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputHouseId_lookUpHouseInformation"
+                                    placeholder="ID of your house">
+                            </td>
+                            <td>
+                                <button id="lookUpHouseInformationBtn" class="btn btn-primary">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子名字</td>
+                            <td style="text-align:left" id="houseName_lookUpHouseInformation"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子等级</td>
+                            <td style="text-align:left" id="houseLevel_lookUpHouseInformation"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">房子主人的地址</td>
+                            <td style="text-align:left" id="houseOwnerAddress_lookUpHouseInformation"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">查看地址拥有的房子编号</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">输入地址</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputOwnerAddress_lookUpHouseOwnership"
+                                    placeholder="ID of your house">
+                            </td>
+                            <td>
+                                <button id="lookUpHouseOwnershipBtn" class="btn btn-primary">查看</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:center">拥有的房子编号</td>
+                            <td style="text-align:left" id="houseOwnershipId_lookUpHouseOwnership"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+
+
+    <div id="sectionC" class="tab-pane fade">
+        <div class="panel panel-primary margin-top-1">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="myWorldName">世界名称</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td>世界地址</td>
+                            <td id="myWorldAddress"></td>
+                            <td>世界主人地址</td>
+                            <td id="myOwnerAddress"></td>
+                        </tr>
+                        <tr>
+                            <td>可发布动态的数量</td>
+                            <td id="canReleaseCount"></td>
+                            <td>已发布动态数量</td>
+                            <td id="haveReleaseCount"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <div id="flip">点击查看/收起这个世界中房子的信息</div>
+                <div id="panel" style="height: 170px; overflow:scroll; display: none">
+                    <table class="table table-striped">
+                        <tr>
+                            <td>房子ID</td>
+                            <td>房子名称</td>
+                            <td>房子等级</td>
+                            <td>房子冷却完成时间</td>
+                        </tr>
+                        <tbody id="houseInformation_flip">
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">取回房子</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">选择房子ID</td>
+                            <td>
+                                <input type="text" class="form-control" id="inputHouseId_withdrawHouse"
+                                    placeholder="ID of your house">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <button id="withdrawHouseBtn" class="btn btn-primary">确认取回</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">发布动态</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td>标题：</td>
+                                <td><input type="text" class="form-control" id="releaseTitle" placeholder="title"></td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <textarea id="releaseContent" style="width:700px;height:200px;overflow:scroll;resize:none;" 
+                        placeholder="content"></textarea>
+                    <button id="releaseBtn" class="btn btn-primary">发送</button>
+                </div>
+            </div>
+        </div>
+        <!---->
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">我的空间</h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div>
+                        <table class="table table-striped">
+                            <tr>
+                                <td>id</td>
+                                <td>title</td>
+                                <td>timestamp</td>
+                            </tr>
+                            <tbody id="myReleaseList">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="sectionD" class="tab-pane fade">
+        <div class="panel panel-primary margin-top-1 text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">管理员界面</h3>
+            </div>
+            <div>
+                <a data-toggle="tab" href="#sectionA">返回</a>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">取出账户余额</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:center">账户余额</td>
+                            <td style="text-align:left" id="mainWorldMoney">-1</td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:center">
+                                    <button id="retrieveMoneyBtn" class="btn btn-primary">取回</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+    <div id="sectionMyWorld" class="tab-pane fade">
+        <div class="panel panel-primary margin-top-1 text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">查看动态内容</h3>
+            </div>
+            <div>
+                <a data-toggle="tab" href="#sectionC">返回</a>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left">动态标题:</td>
+                            <td style="text-align:left" id="enquireReleaseTitle"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">动态内容:</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="enquireReleaseContent">
+                </p>
+            </div>
+        </div>
+    </div>
+    
+
+
+    <div id="sectionViceWorld" class="tab-pane fade">
+        <div class="panel panel-primary margin-top-1 text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">副世界</h3>
+            </div>
+            <div>
+                <a data-toggle="tab" href="#sectionA">返回</a>
+            </div>
+        </div>
+
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title" id="getViceWorldName"></h3>
+            </div>
+            <div class="panel-body">
+                <div>
+                    <div>
+                        <table class="table table-striped">
+                            <tr>
+                                <td>id</td>
+                                <td>title</td>
+                                <td>timestamp</td>
+                            </tr>
+                            <tbody id="viceWorldReleaseList">
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> 
+
+    <div id="sectionViceWorldArticle" class="tab-pane fade">
+        <div class="panel panel-primary margin-top-1 text-center">
+            <div class="panel-heading">
+                <h3 class="panel-title">查看动态内容</h3>
+            </div>
+            <div>
+                <a data-toggle="tab" href="#sectionViceWorld">返回</a>
+            </div>
+        </div>
+
+        <div class="panel panel-primary text-center">
+            <div class="panel-body">
+                <table class="table table-striped">
+                    <tbody>
+                        <tr>
+                            <td style="text-align:left">动态标题:</td>
+                            <td style="text-align:left" id="enquireReleaseTitle_viceWorld"></td>
+                        </tr>
+                        <tr>
+                            <td style="text-align:left">动态内容:</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p id="enquireReleaseContent_viceWorld"></p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</body>
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="web3.min.js"></script>
+<script src="test.js"></script>
+<script src="contractData.js"></script>
+
+</html>
